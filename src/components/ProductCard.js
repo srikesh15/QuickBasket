@@ -10,7 +10,11 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addToCart, increaseQuantity } from '../../redux/slices/cartSlice';
+import {
+  addToCart,
+  increaseQuantity,
+  decreaseQuantity,
+} from '../../redux/slices/cartSlice';
 
 import colors from '../../constants/colors';
 
@@ -67,10 +71,7 @@ const ProductCard = ({ item, onPress }) => {
         {cartItem ? (
           <View style={styles.quantityContainer}>
             <Pressable
-              onPress={() => dispatch({
-                type: 'cart/decreaseQuantity',
-                payload: item.id,
-              })}
+              onPress={() => dispatch(decreaseQuantity(item.id))}
               style={styles.quantityButton}>
               <Text style={styles.quantityButtonText}>−</Text>
             </Pressable>
