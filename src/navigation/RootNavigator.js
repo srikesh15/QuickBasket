@@ -7,10 +7,10 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 
-import LocationScreen from '../screens/location/LocationScreen';
-import LoginScreen from '../screens/auth/LoginScreen';
-import OTPScreen from '../screens/auth/OTPScreen';
 import HomeScreen from '../screens/home/HomeScreen';
+import CategoryScreen from '../screens/category/CategoryScreen';
+import CategoryListScreen from '../screens/category/CategoryListScreen';
+import ProductDetailsScreen from '../screens/product/ProductDetailsScreen';
 
 import PlaceholderScreen from '../screens/PlaceholderScreen';
 
@@ -25,19 +25,50 @@ const RootNavigator = () => {
           headerShown: false,
         }}>
 
-        <Stack.Screen name="Location" component={LocationScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="OTP" component={OTPScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+        />
 
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Category"
+          component={CategoryScreen}
+        />
 
-        <Stack.Screen name="Category" component={PlaceholderScreen} />
-        <Stack.Screen name="CategoryList" component={PlaceholderScreen} />
-        <Stack.Screen name="ProductDetails" component={PlaceholderScreen} />
-        <Stack.Screen name="Cart" component={PlaceholderScreen} />
-        <Stack.Screen name="Search" component={PlaceholderScreen} />
-        <Stack.Screen name="Orders" component={PlaceholderScreen} />
-        <Stack.Screen name="Profile" component={PlaceholderScreen} />
+        <Stack.Screen
+          name="CategoryList"
+          component={CategoryListScreen}
+        />
+
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetailsScreen}
+        />
+
+        <Stack.Screen
+          name="Location"
+          component={PlaceholderScreen}
+        />
+
+        <Stack.Screen
+          name="Cart"
+          component={PlaceholderScreen}
+        />
+
+        <Stack.Screen
+          name="Search"
+          component={PlaceholderScreen}
+        />
+
+        <Stack.Screen
+          name="Orders"
+          component={PlaceholderScreen}
+        />
+
+        <Stack.Screen
+          name="Profile"
+          component={PlaceholderScreen}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>
