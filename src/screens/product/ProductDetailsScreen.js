@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   View,
@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
   increaseQuantity,
+  decreaseQuantity
 } from '../../redux/slices/cartSlice';
 
 import {
@@ -43,6 +44,10 @@ const ProductDetailsScreen = ({ route, navigation }) => {
     state.cart.items.find(item => item.id === product.id),
   );
 
+  useEffect(() => {
+  setSelectedQuantity(cartItem?.quantity || 1);
+}, [cartItem?.quantity]);
+
   const discount = Math.round(
     ((product.mrp - product.price) / product.mrp) * 100,
   );
@@ -53,29 +58,26 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
   const handleAddToCart = () => {
     if (cartItem) {
-      const difference = selectedQuantity - cartItem.quantity;
+  const difference = selectedQuantity - cartItem.quantity;
 
-      if (difference > 0) {
-        for (let i = 0; i < difference; i++) {
-          dispatch(increaseQuantity(product.id));
-        }
-      } else if (difference < 0) {
-        // Quantity adjustment is handled by the cart screen.
-        Alert.alert(
-          'Already in cart',
-          'You can adjust the existing quantity from your cart.',
-        );
-        return;
-      }
-    } else {
-      dispatch(addToCart(product));
-
-      for (let i = 1; i < selectedQuantity; i++) {
-        dispatch(increaseQuantity(product.id));
-      }
+  if (difference > 0) {
+    for (let i = 0; i < difference; i++) {
+      dispatch(increaseQuantity(product.id));
     }
+  } else if (difference < 0) {
+    for (let i = 0; i < Math.abs(difference); i++) {
+      dispatch(decreaseQuantity(product.id));
+    }
+  }
+} else {
+  dispatch(addToCart(product));
 
-    navigation.navigate('Cart');
+  for (let i = 1; i < selectedQuantity; i++) {
+    dispatch(increaseQuantity(product.id));
+  }
+}
+
+navigation.navigate('Cart');
   };
 
   return (
