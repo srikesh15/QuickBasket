@@ -11,6 +11,7 @@ import HomeScreen from '../screens/home/HomeScreen';
 import CategoryScreen from '../screens/category/CategoryScreen';
 import CategoryListScreen from '../screens/category/CategoryListScreen';
 import ProductDetailsScreen from '../screens/product/ProductDetailsScreen';
+import CartScreen from '../screens/cart/CartScreen';
 
 import PlaceholderScreen from '../screens/PlaceholderScreen';
 
@@ -52,7 +53,7 @@ const RootNavigator = () => {
 
         <Stack.Screen
           name="Cart"
-          component={PlaceholderScreen}
+          component={CartScreen}
         />
 
         <Stack.Screen
@@ -69,6 +70,12 @@ const RootNavigator = () => {
           name="Profile"
           component={PlaceholderScreen}
         />
+
+        <Stack.Screen
+          name="Checkout"
+          component={PlaceholderScreen}
+        />
+        
 
       </Stack.Navigator>
     </NavigationContainer>
